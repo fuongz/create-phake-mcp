@@ -1,17 +1,17 @@
-# create-phake-mcp
+# @phake/mcp
 
 CLI tool for scaffolding [Phake MCP](https://github.com/fuongz/phake-mcp) projects.
 
 ## Usage
 
 ```bash
-npx create-phake-mcp [target] [options]
+npx @phake/mcp [target] [options]
 ```
 
 ### Interactive
 
 ```bash
-npx create-phake-mcp
+npx @phake/mcp
 ```
 
 Prompts you for the target directory and template.
@@ -19,7 +19,7 @@ Prompts you for the target directory and template.
 ### Non-interactive
 
 ```bash
-npx create-phake-mcp my-mcp-app --template cloudflare-workers --pm bun --install
+npx @phake/mcp my-mcp-app --template cloudflare-workers --pm bun --install
 ```
 
 ## Options
@@ -44,16 +44,16 @@ npx create-phake-mcp my-mcp-app --template cloudflare-workers --pm bun --install
 
 ```bash
 # Scaffold into a new directory with prompts
-npx create-phake-mcp
+npx @phake/mcp
 
 # Scaffold into ./my-app using the default template
-npx create-phake-mcp my-app
+npx @phake/mcp my-app
 
 # Use a specific template and install deps with bun
-npx create-phake-mcp my-app --template node-hono --pm bun --install
+npx @phake/mcp my-app --template node-hono --pm bun --install
 
 # Scaffold into current directory
-npx create-phake-mcp .
+npx @phake/mcp .
 ```
 
 ## License
