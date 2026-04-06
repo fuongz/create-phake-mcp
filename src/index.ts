@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import { downloadTemplate } from "@bluwy/giget-core";
 import confirm from "@inquirer/confirm";
 import input from "@inquirer/input";
 import select from "@inquirer/select";
@@ -17,9 +16,6 @@ const isCurrentDirRegex = /^(\.\/|\.\\|\.)$/;
 
 const config = {
 	directory: "templates",
-	repository: "phake-mcp",
-	user: "fuongz",
-	ref: "main",
 } as const;
 
 function mkdirp(dir: string) {
@@ -50,12 +46,10 @@ program
 			templates.map((t) => t.value),
 		),
 	)
-	.addOption(new Option("-o, --offline", "Use offline mode").default(false))
 	.action(main);
 
 type ArgOptions = {
 	pm?: string;
-	offline: boolean;
 	install?: boolean;
 	template?: string;
 };
@@ -69,7 +63,7 @@ async function main(
 		picocolors.gray(`${command.name()} version ${command.version()}`),
 	);
 
-	const { install, pm, offline, template: templateArg } = options;
+	const { install, pm, template: templateArg } = options;
 
 	let target = "";
 	if (targetDir) {
@@ -103,7 +97,6 @@ async function main(
 					value: template.value,
 				}),
 			),
-			default: 0,
 		}));
 
 	if (!templateName) {
@@ -135,15 +128,22 @@ async function main(
 	const packageManager = pm ?? "npm";
 
 	try {
-		const spinner = createSpinner("Downloading template").start();
+		const spinner = createSpinner("Copying template").start();
 
-		const templateInput = `gh:${config.user}/${config.repository}/${config.directory}/${templateName}#${config.ref}`;
-
-		await downloadTemplate(templateInput, {
-			dir: targetDirectoryPath,
-			force: true,
-			offline: offline ? true : "prefer",
-		});
+		const templateDir = path.join(
+			import.meta.dirname,
+			"..",
+			config.directory,
+			templateName,
+		);
+		const templateContents = fs.readdirSync(templateDir);
+		for (const file of templateContents) {
+			fs.cpSync(
+				path.join(templateDir, file),
+				path.join(targetDirectoryPath, file),
+				{ recursive: true },
+			);
+		}
 
 		spinner.success();
 
@@ -187,9 +187,7 @@ async function main(
 		fs.writeFileSync(packageJsonPath, JSON.stringify(newPackageJson, null, 2));
 	}
 
-	console.log(
-		picocolors.green(`${picocolors.bold("Copied project files")}`),
-	);
+	console.log(picocolors.green(`${picocolors.bold("Copied project files")}`));
 	const resolvedTarget = path.resolve(target);
 	const currentDir = process.cwd();
 
