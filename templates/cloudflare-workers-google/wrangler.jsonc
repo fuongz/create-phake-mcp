@@ -3,6 +3,7 @@
 	"name": "my-mcp-app",
 	"main": "src/index.ts",
 	"compatibility_date": "2026-04-06",
+	"compatibility_flags": ["nodejs_compat"],
 	"workers_dev": true,
 	"kv_namespaces": [
 		{
@@ -12,7 +13,6 @@
 	],
 	"vars": {
 		"AUTH_STRATEGY": "google",
-		"OAUTH_REDIRECT_URI": "https://your-worker.workers.dev/oauth/provider-callback",
 		"OAUTH_SCOPES": "openid email profile"
 	}
 }

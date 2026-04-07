@@ -1,6 +1,6 @@
 # Cloudflare Workers MCP Server with Google OAuth
 
-# KV Namespace - create via: wrangler kv namespace create TOKENS
+# Generate encryption key: openssl rand -base64 32 | tr '+/' '-_' | tr -d '='
 RS_TOKENS_ENC_KEY=
 
 # Required: OAuth client (your MCP app)
@@ -9,6 +9,7 @@ OAUTH_CLIENT_SECRET=
 
 # Required: OAuth redirect URI (update "your-worker" to your actual worker)
 OAUTH_REDIRECT_URI=https://your-worker.workers.dev/oauth/provider-callback
+OAUTH_REDIRECT_ALLOWLIST=https://your-worker.workers.dev/oauth/provider-callback
 
 # Optional: OAuth scopes (default: "openid email profile")
 # OAUTH_SCOPES=openid email profile

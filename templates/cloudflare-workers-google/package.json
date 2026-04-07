@@ -5,10 +5,11 @@
 	"private": true,
 	"scripts": {
 		"dev": "wrangler dev",
-		"deploy": "wrangler deploy"
+		"deploy": "wrangler deploy",
+		"cf-typegen": "wrangler types"
 	},
 	"dependencies": {
-		"@phake/mcp": "^0.3.0",
+		"@phake/mcp": "^0.3.2",
 		"zod": "^4.0.0"
 	},
 	"devDependencies": {
