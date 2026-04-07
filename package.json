@@ -1,6 +1,6 @@
 {
 	"name": "@phake/create-mcp",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Create a new Phake MCP project",
 	"repository": {
 		"type": "git",
@@ -23,9 +23,9 @@
 	},
 	"dependencies": {
 		"@bluwy/giget-core": "^0.1.7",
-		"@inquirer/confirm": "^6.0.10",
-		"@inquirer/input": "^5.0.10",
-		"@inquirer/select": "^5.1.2",
+		"@inquirer/confirm": "^6.0.11",
+		"@inquirer/input": "^5.0.11",
+		"@inquirer/select": "^5.1.3",
 		"commander": "^14.0.3",
 		"nanospinner": "^1.2.2",
 		"picocolors": "^1.1.1"
