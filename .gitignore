@@ -35,3 +35,6 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 .notes
+
+# -- llm
+AGENTS.md
