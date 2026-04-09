@@ -1,6 +1,6 @@
 {
 	"name": "@phake/create-mcp",
-	"version": "0.0.4",
+	"version": "0.0.3",
 	"description": "Create a new Phake MCP project",
 	"repository": {
 		"type": "git",
